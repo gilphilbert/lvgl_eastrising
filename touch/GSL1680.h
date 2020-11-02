@@ -10,7 +10,6 @@
 */
 #include <Arduino.h>
 #include <Wire.h>
-//#include <i2c_t3.h>
 #include "gslX680firmware.h"
 #ifndef _GSL1680
 #define _GSL1680
@@ -26,7 +25,7 @@ class GSL1680 {
   void      startchip();
   void      sleep();
   void      datasend(uint8_t REG, uint8_t DATA[], uint16_t NB);
-  uint8_t       dataread();
+  uint8_t   dataread();
   uint8_t   readFingerID(int NB);
   uint32_t  readFingerX(int NB);
   uint32_t  readFingerY(int NB);

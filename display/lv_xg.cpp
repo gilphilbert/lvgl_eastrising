@@ -1,28 +1,3 @@
-/*
- LittleVGL to XGLCD-LVGL library 
- Interface between LittleVGL C library and XGLCD-LVGL C++ library
- (compliant with LittleVGL V6)
-
- Based on LittleVGL to XGLCD library
- Copyright (c) 2019 DELCOMp bvba / UVee bvba
- 2sd (a t) delcomp (d o t) com
- 
- License:GNU General Public License v3.0
- 
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 #include "lvgl.h"
 #include "XGLCD.h"
 
@@ -69,7 +44,6 @@
     data->state = LV_INDEV_STATE_REL;
     int NBFinger = TS.dataread();
     if (NBFinger > 0) {
-      Serial.print("Raw touch");
       data->point.x = TS.readFingerX(0);
       data->point.y = TS.readFingerY(0);
       data->state = LV_INDEV_STATE_PR;
@@ -121,8 +95,8 @@ void lv_xg_init() {
 
   lv_disp_drv_t disp_drv;
   lv_disp_drv_init(&disp_drv);
-  disp_drv.hor_res = 800;
-  disp_drv.ver_res = 480;
+  disp_drv.hor_res = _tft.width();
+  disp_drv.ver_res = _tft.height();
   disp_drv.flush_cb = my_disp_flush;
   disp_drv.buffer = &disp_buf;
   lv_disp_drv_register(&disp_drv);
